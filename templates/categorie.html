@@ -1,0 +1,33 @@
+{{define "categorie"}}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catégorie</title>
+    <link rel="stylesheet" href="/static/css/categorie.css">
+</head>
+<body>
+    <header>
+        <!-- ... (votre en-tête) ... -->
+    </header>
+    <div class="main_ctn">
+        <div class="titre">
+            <h1>{{ index .Data 0 "Type" }}</h1>
+        </div>
+        <div class="cartes">
+            {{ range .Data }}
+                {{ with .CardImages }}
+                    {{ range . }}
+                        <div class="carte_img">
+                            <a href="/info/{{ .ID }}">
+                                <img src="{{ .ImageURL }}" alt="" width="200">
+                            </a>
+                        </div>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        </div>
+    </div>
+</body>
+{{end}}

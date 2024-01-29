@@ -167,6 +167,38 @@ func main() {
 		}
 	})
 
+	http.HandleFunc("/categorie", func(w http.ResponseWriter, r *http.Request) {
+		categorie := r.URL.Query().Get("categorie")
+
+		// Effectuez une requête à l'API pour récupérer les cartes de la catégorie triées par type
+		apiURL := fmt.Sprintf("https://db.ygoprodeck.com/api/v7/cardinfo.php?type=%s", categorie)
+		response, err := http.Get(apiURL)
+		if err != nil {
+			http.Error(w, "Erreur lors de la requête à l'API", http.StatusInternalServerError)
+			return
+		}
+		defer response.Body.Close()
+
+		body, err := ioutil.ReadAll(response.Body)
+		if err != nil {
+			http.Error(w, "Erreur lors de la lecture de la réponse de l'API", http.StatusInternalServerError)
+			return
+		}
+
+		var cardsResponse CardResponse
+		err = json.Unmarshal(body, &cardsResponse)
+		if err != nil {
+			http.Error(w, "Erreur lors de la désérialisation JSON de la réponse de l'API", http.StatusInternalServerError)
+			return
+		}
+
+		err = temp.ExecuteTemplate(w, "categorie", cardsResponse)
+		if err != nil {
+			http.Error(w, "Erreur lors du rendu HTML", http.StatusInternalServerError)
+			return
+		}
+	})
+
 	rootDoc, _ := os.Getwd()
 	fileserver := http.FileServer(http.Dir(rootDoc + "/assets"))
 	http.Handle("/static/", http.StripPrefix("/static/", fileserver))

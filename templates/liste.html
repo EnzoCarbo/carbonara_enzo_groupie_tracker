@@ -31,12 +31,14 @@
 				<h1>Card list</h1>
 			</div>
 			<div class="tri">
-				<select id="categories" onchange="location = this.value;">
-					<option value="#" selected disabled hidden>Sort</option>
-					<option value="/categorie?categorie=nouveautes">Spell Card</option>
-					<option value="/categorie?categorie=esport">Effect Monster</option>
-					<option value="/categorie?categorie=presentations">Fusion Monster</option>
-				</select>
+				<form action="/categorie" method="GET" id="categoryForm">
+					<select  name="categorie" id="categorie" onchange="document.getElementById('categoryForm').submit();">
+						<option value="#" selected disabled hidden>Sort</option>
+						<option value="Spell%20Card">Spell Card</option>
+						<option value="Effect Monster">Effect Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+					</select>
+				</form>
 			</div>
 			<div class="cartes">
 				{{ range .Data }}
