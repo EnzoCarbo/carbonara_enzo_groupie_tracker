@@ -1,0 +1,163 @@
+body {
+    margin: 0;
+    background-color: #27292d;
+}
+
+header {
+    width: 100%;
+    height: 7rem;
+    background-color: rgb(34, 34, 34);
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 20px 0px #df3b3b;
+    justify-content: space-between;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo {
+    height: 5rem  
+}
+
+.search {
+    display: flex;
+    border: 1px solid white;
+    border-radius: 2px;
+    background-color: white;
+    justify-content: space-between;
+}
+
+.search_bar{
+border: none;
+padding: 7px;
+font-size: 20px;
+
+}
+
+
+.search_btn{
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+.search_btn:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    list-style-type: none;
+}
+
+
+ul a {
+    text-decoration: none;
+    color: white; 
+}
+
+label {
+    color: white;
+}
+
+.main_ctn {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5%;
+}
+
+h1{
+    color: white;
+}
+
+.cartes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7%;
+    margin-top: 10px;
+    background-color: #353638;
+    border-radius: 15px;
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 20px;
+    min-height: 260px;
+}
+
+
+.carte_img {
+    margin-bottom: 5%;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.carte_img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+select{
+    border: 1px solid rgb(34, 34, 34);
+    background-color: rgb(34, 34, 34);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px;
+}
+
+select:hover{
+    outline: none;
+    cursor: pointer;
+}
+
+select:focus{
+    outline: none;
+    box-shadow: 0 0 10px #670404;
+    border-color: #670404;
+    background-color: #670404;
+}
+
+.tri{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav {
+    color: #fff;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+
+}
+
+.nav::after{
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+
+}
+
+.nav:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+img.logo:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+
+}

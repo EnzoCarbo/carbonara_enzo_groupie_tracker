@@ -1,0 +1,41 @@
+{{define "info"}}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la carte</title>
+    <link rel="stylesheet" href="/static/css/infos.css">
+</head>
+<body>
+    <h1>Détails de la carte</h1>
+
+    {{ with .Data }}
+        {{ range . }}
+            <div>    
+                <img src="{{ index .CardImages 0 }}" alt="" width="200">
+                <p><strong>Nom:</strong> {{ .Name }}</p>
+                <p><strong>Type:</strong> {{ .Type }}</p>
+                <p><strong>Description:</strong> {{ .Description }}</p>
+                <!-- Affichez la rareté uniquement si elle est disponible -->
+                {{ with index .CardSets 0 }}
+                    <p><strong>Rareté:</strong> {{ .SetRarity }}</p>
+                {{ end }}
+                <!-- Affichez le prix sur Cardmarket uniquement s'il est disponible -->
+                {{ with index .CardPrices 0 }}
+                    <p><strong>Prix sur Cardmarket:</strong> {{ .CardmarketPrice }}</p>
+                {{ end }}
+                {{ with .CardImages }}
+					{{ range . }}
+					<a href="/info/{{ .ID }}">
+						<img src="{{ .ImageURL }}" alt="" width="200">
+					</a>
+					{{ end }}
+				{{ end }}
+            </div>
+            <hr>
+        {{ end }}
+    {{ end }}
+</body>
+</html>
+{{end}}

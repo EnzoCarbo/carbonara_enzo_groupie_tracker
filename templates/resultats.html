@@ -1,0 +1,35 @@
+{{define "recherche"}}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/resultats.css">
+    <title>Résultats de la recherche</title>
+</head>
+<body>
+    <h1>Résultats de la recherche</h1>
+    {{ if .Data }}
+        <ul>
+            {{ range .Data }}
+                <li>
+                    <strong>Nom:</strong> {{ .Name }}<br>
+                    <strong>Type:</strong> {{ .Type }}<br>
+                    <strong>Description:</strong> {{ .Description }}<br>
+                    {{ with .CardImages }}
+					{{ range . }}
+					<a href="/info/{{ .ID }}">
+						<img src="{{ .ImageURL }}" alt="" width="200">
+					</a>
+					{{ end }}
+				{{ end }}
+                </li>
+                <br>
+            {{ end }}
+        </ul>
+    {{ else }}
+        <p>Aucun résultat trouvé.</p>
+    {{ end }}
+</body>
+</html>
+{{ end }}
