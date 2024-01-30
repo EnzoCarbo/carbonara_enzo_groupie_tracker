@@ -27,6 +27,7 @@ header {
     border-radius: 2px;
     background-color: white;
     justify-content: space-between;
+    align-items: center;
 }
 
 .search_bar{
@@ -92,7 +93,7 @@ h1{
 
 
 .carte_img {
-    margin-bottom: 5%;
+    margin: 2.5% 0;
     position: relative;
     overflow: hidden;
     transition: transform 0.3s ease;
@@ -110,6 +111,9 @@ select{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 5px;
+    overflow: hidden;
+    height: 515px;
+    outline: none;
 }
 
 select:hover{
@@ -117,16 +121,29 @@ select:hover{
     cursor: pointer;
 }
 
-select:focus{
-    outline: none;
-    box-shadow: 0 0 10px #670404;
-    border-color: #670404;
-    background-color: #670404;
+select:focus {
+    border: 1px solid #ccc; /* Ajoutez la couleur de la bordure souhaitée */
+    outline: none; /* Supprimez l'effet de mise en surbrillance par défaut lors de la sélection */
+  }
+
+
+.tri_ctn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .tri{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    color: white;
+    background-color: rgb(34, 34, 34);
+    width: 45%;
+    padding: 2% 5%;
+    border-radius: 5%;
+    margin: 2% 0;
 }
 
 .nav {
@@ -164,5 +181,62 @@ img.logo:hover {
 
 form {
     display: flex;
-    gap: 4rem;
+    align-items: self-end;
 }
+
+.sbm_btn{
+    display: inline-block;
+    padding: 0.5em 1.7em;
+    margin: 0 0.1em 0.1em 0;
+    border: 0.16em solid rgb(255, 255, 255);
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+    text-shadow: 0 0.04em 0.04em rgba(255, 255, 255, 0.253);
+    text-align: center;
+    transition: all 0.2s;
+    background-color: rgb(34, 34, 34);
+    margin: 35px;
+}
+
+.sbm_btn:hover {
+    color: black;
+    background-color: rgb(255, 255, 255);
+  }
+
+
+ h2 {
+    font-size: 36px;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+ }
+
+ .hidden-form {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+ }
+ 
+ .visible-form {
+    opacity: 1;
+    max-height: 1000px;
+    transition: opacity 0.6s ease, max-height 0.6s ease;
+ }
+
+ #categoryForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ .iner_grp {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+ }

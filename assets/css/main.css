@@ -1,0 +1,102 @@
+body {
+    width: 100%;
+    height: 200vh;
+    margin: 0;
+    background-image: url(/static/img/fond.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.img{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.display{
+    width: 100%;
+    height: 100vh;
+}
+
+.leftpart {
+    width: 100%;
+    height: 100vh;
+    font: 36px bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.rightpart {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.upper_txt {
+    text-align: right;
+    width: 60%;
+}
+
+#dragon {
+    width: 101%;
+}
+
+.display {
+    display: flex;
+}
+
+.mid_left {
+    width: 100%;
+    height: 100vh;
+    font: 36px bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.mid_right {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content{
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Source Sans Pro';
+    font-size: 17px;
+}
+
+p{
+    margin: 0;
+    width: 70%;
+    font-size: 1rem;
+    line-height: 2;
+    font-weight: 300;
+    letter-spacing: 0.0375em;
+    padding-bottom: 5%;
+}
+
+.cartes {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#carte1 {
+    width: 30%;
+}
+
+#intro {
+    text-align: right;
+    width: 50%;
+}
