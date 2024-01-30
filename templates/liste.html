@@ -14,8 +14,8 @@
 			</a>
 			<ul>
 				<a class="nav" href="#">Home</a>
-				<a class="nav" href="#">List</a>
-				<a class="nav" href="#">Favorite</a>
+				<a class="nav" href="http://localhost:8080/liste">Card Database</a>
+				<a class="nav" href="#">My deck</a>
 			</ul>
 			<form action="/recherche" method="GET" class="search">
 				<input type="text" id="recherche" name="query" placeholder="Rechercher une carte" required class="search_bar">
@@ -32,12 +32,65 @@
 			</div>
 			<div class="tri">
 				<form action="/categorie" method="GET" id="categoryForm">
-					<select  name="categorie" id="categorie" onchange="document.getElementById('categoryForm').submit();">
+					<select name="categorie" id="categorie" multiple onchange="updateSelection('categorie');">
 						<option value="#" selected disabled hidden>Sort</option>
-						<option value="Spell%20Card">Spell Card</option>
 						<option value="Effect Monster">Effect Monster</option>
+						<option value="Flip Effect Monster">Flip Effect Monster</option>
+						<option value="Flip Tuner Effect Monster">Flip Tuner Effect Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
+						<option value="Fusion Monster">Fusion Monster</option>
 						<option value="Fusion Monster">Fusion Monster</option>
 					</select>
+					<select name="level" id="level" multiple onchange="updateSelection('level');">
+						<option value="" selected disabled hidden>Level</option>
+						<option value="1">Level 1</option>
+						<option value="2">Level 2</option>
+						<option value="3">Level 3</option>
+						<option value="4">Level 4</option>
+						<option value="5">Level 5</option>
+						<option value="6">Level 6</option>
+						<option value="7">Level 7</option>
+						<option value="8">Level 8</option>
+						<option value="9">Level 9</option>
+						<option value="10">Level 10</option>
+						<option value="11">Level 11</option>
+						<option value="12">Level 12</option>
+					</select>
+					<select name="attribute" id="attribute" multiple onchange="updateSelection('attribute');">
+						<option value="#" selected disabled hidden>Attribute</option>
+						<option value="dark">Dark</option>
+						<option value="earth">Earth</option>
+						<option value="fire">Fire</option>
+						<option value="light">Light</option>
+						<option value="water">Water</option>
+						<option value="wind">Wind</option>
+						<option value="divine">Divine</option>
+						<option value="Fire">Fire</option>
+					</select>
+					<button type="submit">Trier</button>
 				</form>
 			</div>
 			<div class="cartes">

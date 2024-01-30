@@ -17,11 +17,9 @@
                 <p><strong>Nom:</strong> {{ .Name }}</p>
                 <p><strong>Type:</strong> {{ .Type }}</p>
                 <p><strong>Description:</strong> {{ .Description }}</p>
-                <!-- Affichez la rareté uniquement si elle est disponible -->
                 {{ with index .CardSets 0 }}
                     <p><strong>Rareté:</strong> {{ .SetRarity }}</p>
                 {{ end }}
-                <!-- Affichez le prix sur Cardmarket uniquement s'il est disponible -->
                 {{ with index .CardPrices 0 }}
                     <p><strong>Prix sur Cardmarket:</strong> {{ .CardmarketPrice }}</p>
                 {{ end }}

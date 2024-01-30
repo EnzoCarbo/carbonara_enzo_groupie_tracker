@@ -126,7 +126,7 @@ select:focus{
 
 .tri{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .nav {
@@ -160,4 +160,9 @@ img.logo:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease;
 
+}
+
+form {
+    display: flex;
+    gap: 4rem;
 }

@@ -37,7 +37,11 @@ type Card struct {
 	Type          string      `json:"type"`
 	FrameType     string      `json:"frameType"`
 	Description   string      `json:"desc"`
+	Atk           int         `json:"atk"`
+	Def           int         `json:"def"`
+	Level         int         `json:"level"`
 	Race          string      `json:"race"`
+	Attribute     string      `json:"attribute"`
 	Archetype     string      `json:"archetype"`
 	YgoProDeckURL string      `json:"ygoprodeck_url"`
 	CardSets      []CardSet   `json:"card_sets"`
@@ -168,10 +172,29 @@ func main() {
 	})
 
 	http.HandleFunc("/categorie", func(w http.ResponseWriter, r *http.Request) {
-		categorie := r.URL.Query().Get("categorie")
+		categories := r.URL.Query()["categorie"]
+		levels := r.URL.Query()["level"]
+		attributes := r.URL.Query()["attribute"]
 
-		// Effectuez une requête à l'API pour récupérer les cartes de la catégorie triées par type
-		apiURL := fmt.Sprintf("https://db.ygoprodeck.com/api/v7/cardinfo.php?type=%s", categorie)
+		if len(categories) == 0 && len(levels) == 0 && len(attributes) == 0 {
+			http.Error(w, "Veuillez fournir au moins une option de tri.", http.StatusBadRequest)
+			return
+		}
+
+		apiURL := "https://db.ygoprodeck.com/api/v7/cardinfo.php?"
+
+		for _, category := range categories {
+			apiURL += "&type=" + category
+		}
+
+		for _, level := range levels {
+			apiURL += "&level=" + level
+		}
+
+		for _, attribute := range attributes {
+			apiURL += "&attribute=" + attribute
+		}
+
 		response, err := http.Get(apiURL)
 		if err != nil {
 			http.Error(w, "Erreur lors de la requête à l'API", http.StatusInternalServerError)
@@ -192,9 +215,15 @@ func main() {
 			return
 		}
 
+		if len(cardsResponse.Data) > 54 {
+			cardsResponse.Data = cardsResponse.Data[:54]
+		}
+
+		fmt.Println(categories, levels, attributes)
+
 		err = temp.ExecuteTemplate(w, "categorie", cardsResponse)
 		if err != nil {
-			http.Error(w, "Erreur lors du rendu HTML", http.StatusInternalServerError)
+			fmt.Println("Error rendering HTML:", err)
 			return
 		}
 	})
