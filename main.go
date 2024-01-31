@@ -91,10 +91,6 @@ func main() {
 			return
 		}
 
-		if len(cardsResponse.Data) > 54 {
-			cardsResponse.Data = cardsResponse.Data[:54]
-		}
-
 		err = temp.ExecuteTemplate(w, "liste", cardsResponse)
 		if err != nil {
 			fmt.Println("Error rendering HTML:", err)
@@ -213,10 +209,6 @@ func main() {
 		if err != nil {
 			http.Error(w, "Erreur lors de la désérialisation JSON de la réponse de l'API", http.StatusInternalServerError)
 			return
-		}
-
-		if len(cardsResponse.Data) > 54 {
-			cardsResponse.Data = cardsResponse.Data[:54]
 		}
 
 		fmt.Println(categories, levels, attributes)

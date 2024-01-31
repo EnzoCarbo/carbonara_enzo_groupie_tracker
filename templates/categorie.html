@@ -1,147 +1,153 @@
 {{define "categorie"}}
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Card list</title>
-        <link rel="stylesheet" href="/static/css/liste.css">
-    </head>
-	<body>
-		<header>
-			<a href="http://localhost:8080/liste">
-				<img src="/static/img/logo.png" class="logo" alt="">
-			</a>
-			<ul>
-				<a class="nav" href="http://localhost:8080/main">Intro</a>
-				<a class="nav" href="http://localhost:8080/liste">Card Database</a>
-				<a class="nav" href="#">My deck</a>
-			</ul>
-			<form action="/recherche" method="GET" class="search">
-				<input type="text" id="recherche" name="query" placeholder="Rechercher une carte" required class="search_bar">
-				<button type="submit" class="search_btn">
-					<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 32 32" class="search_icon">
-						<path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"></path>
-						</svg>
-				</button>
-			</form>
-		</header>
-		<div class="main_ctn">
-			<div class="tri_ctn">
-				<div class="show_btn">
-					<button id="toggleSortForm" class="sbm_btn">Show/Hide Sorting</button>
-				</div>
-				<div class="tri hidden-form">
-					<h2>Sort settings</h2>
-					<form action="/categorie" method="GET" id="categoryForm" class="hidden-form">
-						<div class="iner_grp">
-							<select name="categorie" id="categorie" multiple onchange="updateSelection('categorie');">
-								<option value="#" selected disabled hidden>Sort</option>
-								<optgroup label="Main Deck Types">
-									<option value="Effect Monster">Effect Monster</option>
-									<option value="Flip Effect Monster">Flip Effect Monster</option>
-									<option value="Gemini Monster">Gemini Monster</option>
-									<option value="Normal Monster">Normal Monster</option>
-									<option value="Normal Tuner Monster">Normal Tuner Monster"</option>
-									<option value="Pendulum Effect Monster">Pendulum Effect Monster</option>
-									<option value="Pendulum Flip Effect Monster">Pendulum Flip Effect Monster</option>
-									<option value="Pendulum Normal Monster">Pendulum Normal Monster</option>
-									<option value="Pendulum Tuner Effect Monster">Pendulum Tuner Effect Monster</option>
-									<option value="Ritual Effect Monster">Ritual Effect Monster</option>
-									<option value="Ritual Monster">Ritual Monster</option>
-									<option value="Spell Card">Spell Card</option>
-									<option value="Spirit Monster">Spirit Monster</option>
-									<option value="Toon Monster">Toon Monster</option>
-									<option value="Trap Card">Trap Card</option>
-									<option value="Tuner Monster">Tuner Monster</option>
-									<option value="Union Effect Monster">Union Effect Monster</option>
-								</optgroup>
-								<optgroup label="Extra Deck Types">
-									<option value="Fusion Monster">Fusion Monster</option>
-									<option value="Link Monster">Link Monster</option>
-									<option value="Pendulum Effect Fusion Monster">Pendulum Effect Fusion Monster</option>
-									<option value="Synchro Monster">Synchro Monster</option>
-									<option value="Synchro Pendulum Effect Monster">Synchro Pendulum Effect Monster</option>
-									<option value="Synchro Tuner Monster">Synchro Tuner Monster</option>
-									<option value="XYZ Monster">XYZ Monster</option>
-									<option value="XYZ Pendulum Effect Monster">XYZ Pendulum Effect Monster</option>
-								</optgroup>
-									<optgroup label="Other Types">
-									<option value="Skill Card">Skill Card</option>
-									<option value="Token">Token</option>
-								</optgroup>
-							</select>
-							<select name="level" id="level" multiple onchange="updateSelection('level');">
-								<option value="" selected disabled hidden>Level</option>
-								<optgroup label="Cards Level">
-									<option value="1">Level 1</option>
-									<option value="2">Level 2</option>
-									<option value="3">Level 3</option>
-									<option value="4">Level 4</option>
-									<option value="5">Level 5</option>
-									<option value="6">Level 6</option>
-									<option value="7">Level 7</option>
-									<option value="8">Level 8</option>
-									<option value="9">Level 9</option>
-									<option value="10">Level 10</option>
-									<option value="11">Level 11</option>
-									<option value="12">Level 12</option>
-								</optgroup>
-							</select>
-							<select name="attribute" id="attribute" multiple onchange="updateSelection('attribute');">
-								<option value="#" selected disabled hidden>Attribute</option>
-								<optgroup label="Attribute">
-									<option value="dark">Dark</option>
-									<option value="earth">Earth</option>
-									<option value="fire">Fire</option>
-									<option value="light">Light</option>
-									<option value="water">Water</option>
-									<option value="wind">Wind</option>
-									<option value="divine">Divine</option>
-									<option value="Fire">Fire</option>
-								</optgroup>
-							</select>
-						</div>
-						<div class="btn">
-							<button type="submit" class="sbm_btn">Trier</button>
-						</div>
-					</form>
-				</div>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Card list</title>
+	<link rel="stylesheet" href="/static/css/liste.css">
+</head>
+
+<body>
+	<header>
+		<a href="http://localhost:8080/liste">
+			<img src="/static/img/logo.png" class="logo" alt="">
+		</a>
+		<ul>
+			<a class="nav" href="http://localhost:8080/main">Intro</a>
+			<a class="nav" href="http://localhost:8080/liste">Card Database</a>
+			<a class="nav" href="#">My deck</a>
+		</ul>
+		<form action="/recherche" method="GET" class="search">
+			<input type="text" id="recherche" name="query" placeholder="Rechercher une carte" required
+				class="search_bar">
+			<button type="submit" class="search_btn">
+				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 32 32"
+					class="search_icon">
+					<path
+						d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z">
+					</path>
+				</svg>
+			</button>
+		</form>
+	</header>
+	<div class="main_ctn">
+		<div class="tri_ctn">
+			<div class="show_btn">
+				<button id="toggleSortForm" class="sbm_btn">Show/Hide Sorting</button>
 			</div>
-			<div class="titre">
-				<h1>Card list</h1>
-			</div>
-			<div class="cartes">
-				{{ range .Data }}
-						{{ with .CardImages }}
-							{{ range . }}
-							<div class="carte_img">
-								<a href="/info/{{ .ID }}">
-									<img src="{{ .ImageURL }}" alt="" width="200">
-								</a>
-							</div>
-							{{ end }}
-						{{ end }}
-					{{ end }}
+			<div class="tri hidden-form">
+				<h2>Sort settings</h2>
+				<form action="/categorie" method="GET" id="categoryForm" class="hidden-form">
+					<div class="iner_grp">
+						<select name="categorie" id="categorie" multiple onchange="updateSelection('categorie');">
+							<option value="#" selected disabled hidden>Sort</option>
+							<optgroup label="Main Deck Types">
+								<option value="Effect Monster">Effect Monster</option>
+								<option value="Flip Effect Monster">Flip Effect Monster</option>
+								<option value="Gemini Monster">Gemini Monster</option>
+								<option value="Normal Monster">Normal Monster</option>
+								<option value="Normal Tuner Monster">Normal Tuner Monster"</option>
+								<option value="Pendulum Effect Monster">Pendulum Effect Monster</option>
+								<option value="Pendulum Flip Effect Monster">Pendulum Flip Effect Monster</option>
+								<option value="Pendulum Normal Monster">Pendulum Normal Monster</option>
+								<option value="Pendulum Tuner Effect Monster">Pendulum Tuner Effect Monster</option>
+								<option value="Ritual Effect Monster">Ritual Effect Monster</option>
+								<option value="Ritual Monster">Ritual Monster</option>
+								<option value="Spell Card">Spell Card</option>
+								<option value="Spirit Monster">Spirit Monster</option>
+								<option value="Toon Monster">Toon Monster</option>
+								<option value="Trap Card">Trap Card</option>
+								<option value="Tuner Monster">Tuner Monster</option>
+								<option value="Union Effect Monster">Union Effect Monster</option>
+							</optgroup>
+							<optgroup label="Extra Deck Types">
+								<option value="Fusion Monster">Fusion Monster</option>
+								<option value="Link Monster">Link Monster</option>
+								<option value="Pendulum Effect Fusion Monster">Pendulum Effect Fusion Monster</option>
+								<option value="Synchro Monster">Synchro Monster</option>
+								<option value="Synchro Pendulum Effect Monster">Synchro Pendulum Effect Monster</option>
+								<option value="Synchro Tuner Monster">Synchro Tuner Monster</option>
+								<option value="XYZ Monster">XYZ Monster</option>
+								<option value="XYZ Pendulum Effect Monster">XYZ Pendulum Effect Monster</option>
+							</optgroup>
+							<optgroup label="Other Types">
+								<option value="Skill Card">Skill Card</option>
+								<option value="Token">Token</option>
+							</optgroup>
+						</select>
+						<select name="level" id="level" multiple onchange="updateSelection('level');">
+							<option value="" selected disabled hidden>Level</option>
+							<optgroup label="Cards Level">
+								<option value="1">Level 1</option>
+								<option value="2">Level 2</option>
+								<option value="3">Level 3</option>
+								<option value="4">Level 4</option>
+								<option value="5">Level 5</option>
+								<option value="6">Level 6</option>
+								<option value="7">Level 7</option>
+								<option value="8">Level 8</option>
+								<option value="9">Level 9</option>
+								<option value="10">Level 10</option>
+								<option value="11">Level 11</option>
+								<option value="12">Level 12</option>
+							</optgroup>
+						</select>
+						<select name="attribute" id="attribute" multiple onchange="updateSelection('attribute');">
+							<option value="#" selected disabled hidden>Attribute</option>
+							<optgroup label="Attribute">
+								<option value="dark">Dark</option>
+								<option value="earth">Earth</option>
+								<option value="fire">Fire</option>
+								<option value="light">Light</option>
+								<option value="water">Water</option>
+								<option value="wind">Wind</option>
+								<option value="divine">Divine</option>
+								<option value="Fire">Fire</option>
+							</optgroup>
+						</select>
+					</div>
+					<div class="btn">
+						<button type="submit" class="sbm_btn">Trier</button>
+					</div>
+				</form>
 			</div>
 		</div>
-	</body>
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-		   var toggleButton = document.getElementById('toggleSortForm');
-		   var sortForm = document.getElementById('categoryForm');
-		   var sortSection = document.querySelector('.tri');
-	 
-		   toggleButton.addEventListener('click', function () {
-			  // Basculer la classe 'hidden-form' du formulaire pour afficher ou masquer
-			  sortForm.classList.toggle('hidden-form');
-			  sortForm.classList.toggle('visible-form');
-	 
-			  // Basculer la classe 'hidden-form' de la section de tri pour afficher ou masquer
-			  sortSection.classList.toggle('hidden-form');
-			  sortSection.classList.toggle('visible-form');
-		   });
+		<div class="titre">
+			<h1>Card list</h1>
+		</div>
+		<div class="cartes">
+			{{ range .Data }}
+			{{ with .CardImages }}
+			{{ range . }}
+			<div class="carte_img">
+				<a href="/info/{{ .ID }}">
+					<img src="{{ .ImageURL }}" alt="" width="200">
+				</a>
+			</div>
+			{{ end }}
+			{{ end }}
+			{{ end }}
+		</div>
+	</div>
+</body>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var toggleButton = document.getElementById('toggleSortForm');
+		var sortForm = document.getElementById('categoryForm');
+		var sortSection = document.querySelector('.tri');
+
+		toggleButton.addEventListener('click', function () {
+			// Basculer la classe 'hidden-form' du formulaire pour afficher ou masquer
+			sortForm.classList.toggle('hidden-form');
+			sortForm.classList.toggle('visible-form');
+
+			// Basculer la classe 'hidden-form' de la section de tri pour afficher ou masquer
+			sortSection.classList.toggle('hidden-form');
+			sortSection.classList.toggle('visible-form');
 		});
-	 </script>
-	 
+	});
+</script>
+
 {{end}}
