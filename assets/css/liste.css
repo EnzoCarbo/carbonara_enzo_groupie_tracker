@@ -41,6 +41,7 @@ font-size: 20px;
 .search_btn{
     border: 1px solid white;
     border-radius: 50%;
+    background-color: white;
 }
 
 .search_btn:hover{
@@ -56,6 +57,7 @@ ul {
     width: 100%;
     align-items: center;
     list-style-type: none;
+    padding-left: 8%;
 }
 
 
@@ -122,8 +124,8 @@ select:hover{
 }
 
 select:focus {
-    border: 1px solid #ccc; /* Ajoutez la couleur de la bordure souhaitée */
-    outline: none; /* Supprimez l'effet de mise en surbrillance par défaut lors de la sélection */
+    border: 1px solid #ccc; 
+    outline: none;
   }
 
 

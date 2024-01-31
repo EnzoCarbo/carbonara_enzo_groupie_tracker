@@ -9,11 +9,11 @@
     </head>
 	<body>
 		<header>
-			<a href="#">
+			<a href="http://localhost:8080/liste">
 				<img src="/static/img/logo.png" class="logo" alt="">
 			</a>
 			<ul>
-				<a class="nav" href="#">Home</a>
+				<a class="nav" href="http://localhost:8080/main">Intro</a>
 				<a class="nav" href="http://localhost:8080/liste">Card Database</a>
 				<a class="nav" href="#">My deck</a>
 			</ul>
@@ -34,72 +34,74 @@
 				<div class="tri hidden-form">
 					<h2>Sort settings</h2>
 					<form action="/categorie" method="GET" id="categoryForm" class="hidden-form">
-						<select name="categorie" id="categorie" multiple onchange="updateSelection('categorie');">
-							<option value="#" selected disabled hidden>Sort</option>
-							<optgroup label="Main Deck Types">
-								<option value="Effect Monster">Effect Monster</option>
-								<option value="Flip Effect Monster">Flip Effect Monster</option>
-								<option value="Gemini Monster">Gemini Monster</option>
-								<option value="Normal Monster">Normal Monster</option>
-								<option value="Normal Tuner Monster">Normal Tuner Monster"</option>
-								<option value="Pendulum Effect Monster">Pendulum Effect Monster</option>
-								<option value="Pendulum Flip Effect Monster">Pendulum Flip Effect Monster</option>
-								<option value="Pendulum Normal Monster">Pendulum Normal Monster</option>
-								<option value="Pendulum Tuner Effect Monster">Pendulum Tuner Effect Monster</option>
-								<option value="Ritual Effect Monster">Ritual Effect Monster</option>
-								<option value="Ritual Monster">Ritual Monster</option>
-								<option value="Spell Card">Spell Card</option>
-								<option value="Spirit Monster">Spirit Monster</option>
-								<option value="Toon Monster">Toon Monster</option>
-								<option value="Trap Card">Trap Card</option>
-								<option value="Tuner Monster">Tuner Monster</option>
-								<option value="Union Effect Monster">Union Effect Monster</option>
-							</optgroup>
-							<optgroup label="Extra Deck Types">
-								<option value="Fusion Monster">Fusion Monster</option>
-								<option value="Link Monster">Link Monster</option>
-								<option value="Pendulum Effect Fusion Monster">Pendulum Effect Fusion Monster</option>
-								<option value="Synchro Monster">Synchro Monster</option>
-								<option value="Synchro Pendulum Effect Monster">Synchro Pendulum Effect Monster</option>
-								<option value="Synchro Tuner Monster">Synchro Tuner Monster</option>
-								<option value="XYZ Monster">XYZ Monster</option>
-								<option value="XYZ Pendulum Effect Monster">XYZ Pendulum Effect Monster</option>
-							</optgroup>
-								<optgroup label="Other Types">
-								<option value="Skill Card">Skill Card</option>
-								<option value="Token">Token</option>
-							</optgroup>
-						</select>
-						<select name="level" id="level" multiple onchange="updateSelection('level');">
-							<option value="" selected disabled hidden>Level</option>
-							<optgroup label="Cards Level">
-								<option value="1">Level 1</option>
-								<option value="2">Level 2</option>
-								<option value="3">Level 3</option>
-								<option value="4">Level 4</option>
-								<option value="5">Level 5</option>
-								<option value="6">Level 6</option>
-								<option value="7">Level 7</option>
-								<option value="8">Level 8</option>
-								<option value="9">Level 9</option>
-								<option value="10">Level 10</option>
-								<option value="11">Level 11</option>
-								<option value="12">Level 12</option>
-							</optgroup>
-						</select>
-						<select name="attribute" id="attribute" multiple onchange="updateSelection('attribute');">
-							<option value="#" selected disabled hidden>Attribute</option>
-							<optgroup label="Attribute">
-								<option value="dark">Dark</option>
-								<option value="earth">Earth</option>
-								<option value="fire">Fire</option>
-								<option value="light">Light</option>
-								<option value="water">Water</option>
-								<option value="wind">Wind</option>
-								<option value="divine">Divine</option>
-								<option value="Fire">Fire</option>
-							</optgroup>
-						</select>
+						<div class="iner_grp">
+							<select name="categorie" id="categorie" multiple onchange="updateSelection('categorie');">
+								<option value="#" selected disabled hidden>Sort</option>
+								<optgroup label="Main Deck Types">
+									<option value="Effect Monster">Effect Monster</option>
+									<option value="Flip Effect Monster">Flip Effect Monster</option>
+									<option value="Gemini Monster">Gemini Monster</option>
+									<option value="Normal Monster">Normal Monster</option>
+									<option value="Normal Tuner Monster">Normal Tuner Monster"</option>
+									<option value="Pendulum Effect Monster">Pendulum Effect Monster</option>
+									<option value="Pendulum Flip Effect Monster">Pendulum Flip Effect Monster</option>
+									<option value="Pendulum Normal Monster">Pendulum Normal Monster</option>
+									<option value="Pendulum Tuner Effect Monster">Pendulum Tuner Effect Monster</option>
+									<option value="Ritual Effect Monster">Ritual Effect Monster</option>
+									<option value="Ritual Monster">Ritual Monster</option>
+									<option value="Spell Card">Spell Card</option>
+									<option value="Spirit Monster">Spirit Monster</option>
+									<option value="Toon Monster">Toon Monster</option>
+									<option value="Trap Card">Trap Card</option>
+									<option value="Tuner Monster">Tuner Monster</option>
+									<option value="Union Effect Monster">Union Effect Monster</option>
+								</optgroup>
+								<optgroup label="Extra Deck Types">
+									<option value="Fusion Monster">Fusion Monster</option>
+									<option value="Link Monster">Link Monster</option>
+									<option value="Pendulum Effect Fusion Monster">Pendulum Effect Fusion Monster</option>
+									<option value="Synchro Monster">Synchro Monster</option>
+									<option value="Synchro Pendulum Effect Monster">Synchro Pendulum Effect Monster</option>
+									<option value="Synchro Tuner Monster">Synchro Tuner Monster</option>
+									<option value="XYZ Monster">XYZ Monster</option>
+									<option value="XYZ Pendulum Effect Monster">XYZ Pendulum Effect Monster</option>
+								</optgroup>
+									<optgroup label="Other Types">
+									<option value="Skill Card">Skill Card</option>
+									<option value="Token">Token</option>
+								</optgroup>
+							</select>
+							<select name="level" id="level" multiple onchange="updateSelection('level');">
+								<option value="" selected disabled hidden>Level</option>
+								<optgroup label="Cards Level">
+									<option value="1">Level 1</option>
+									<option value="2">Level 2</option>
+									<option value="3">Level 3</option>
+									<option value="4">Level 4</option>
+									<option value="5">Level 5</option>
+									<option value="6">Level 6</option>
+									<option value="7">Level 7</option>
+									<option value="8">Level 8</option>
+									<option value="9">Level 9</option>
+									<option value="10">Level 10</option>
+									<option value="11">Level 11</option>
+									<option value="12">Level 12</option>
+								</optgroup>
+							</select>
+							<select name="attribute" id="attribute" multiple onchange="updateSelection('attribute');">
+								<option value="#" selected disabled hidden>Attribute</option>
+								<optgroup label="Attribute">
+									<option value="dark">Dark</option>
+									<option value="earth">Earth</option>
+									<option value="fire">Fire</option>
+									<option value="light">Light</option>
+									<option value="water">Water</option>
+									<option value="wind">Wind</option>
+									<option value="divine">Divine</option>
+									<option value="Fire">Fire</option>
+								</optgroup>
+							</select>
+						</div>
 						<div class="btn">
 							<button type="submit" class="sbm_btn">Trier</button>
 						</div>
@@ -133,10 +135,13 @@
 		   toggleButton.addEventListener('click', function () {
 			  // Basculer la classe 'hidden-form' du formulaire pour afficher ou masquer
 			  sortForm.classList.toggle('hidden-form');
+			  sortForm.classList.toggle('visible-form');
 	 
 			  // Basculer la classe 'hidden-form' de la section de tri pour afficher ou masquer
 			  sortSection.classList.toggle('hidden-form');
+			  sortSection.classList.toggle('visible-form');
 		   });
 		});
 	 </script>
+	 
 {{end}}
