@@ -24,7 +24,7 @@ body {
 .api_left {
     width: 100%;
     height: 100%;
-    font: 200% bold;
+    font: 170% bold;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,8 +43,15 @@ body {
 }
 
 .upper_txt {
+    display: flex;
     text-align: right;
     width: 60%;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#fleche {
+    width: 15%;
 }
 
 #dragon {
@@ -128,6 +135,7 @@ p {
 }
 
 #logo_api {
+    margin-top: 10%;
     width: 50%;
 }
 

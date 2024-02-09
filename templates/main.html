@@ -15,7 +15,9 @@
         <div class="leftpart">
             <div class="upper_txt">
                 <h1>Yu-Gi-Oh TCG Developers</h1>
-                Customize your own deck
+                <p>Customize your own deck</p>
+                <!-- Ajoutez un identifiant à la section cible -->
+                <img id="fleche" src="/static/img/fleche-removebg-preview (3).png" alt="Rediriger vers la section cible" onclick="scrollToSection('target')" style="cursor: pointer;">
             </div>
         </div>
         <div class="rightpart">
@@ -24,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div class="display">
+    <div class="display" id="target">
         <div class="mid_left">
             <div class="upper_txt" id="intro">
                 <h2>What is Yu-Gi-Oh</h2>
@@ -78,7 +80,12 @@
         </div>
         </div>
     </div>
+    <script>
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
-
 </html>
 {{end}}
