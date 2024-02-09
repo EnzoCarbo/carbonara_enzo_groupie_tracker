@@ -8,20 +8,23 @@ body {
     background-attachment: fixed;
 }
 
-.img{
+.img {
     display: flex;
     justify-content: flex-end;
 }
 
-.display{
+.display {
     width: 100%;
     height: 100%;
 }
 
-.leftpart {
+.leftpart,
+.mid_left,
+.explain_left,
+.api_left {
     width: 100%;
     height: 100%;
-    font: 36px bold;
+    font: 100% bold;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,10 +32,14 @@ body {
     color: white;
 }
 
-.rightpart {
+.rightpart,
+.mid_right,
+.explain_right,
+.api_right {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background-color: #ffffff;
 }
 
 .upper_txt {
@@ -46,70 +53,11 @@ body {
 
 .display {
     display: flex;
-}
-
-.mid_left {
-    width: 100%;
-    height: 100%;
-    font: 36px bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.mid_right {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
-.explain_left {
-    width: 100%;
-    height: 100%;
-    font: 36px bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.explain_right {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.api_left {
-    width: 100%;
-    height: 100%;
-    font: 36px bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white; 
-}
-
-.api_right {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.content{
-    margin: 5% 5%;
+.content {
+    margin: 5% 0%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -117,7 +65,7 @@ body {
     font-size: 17px;
 }
 
-p{
+p {
     margin: 8% 0;
     width: 70%;
     font-size: 1rem;
@@ -129,7 +77,7 @@ p{
 .cartes {
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 10%; 
+    margin-bottom: 10%;
 }
 
 #carte1 {
@@ -149,39 +97,20 @@ p{
     margin: 13% 0;
 }
 
-.liste {
-    list-style-type: none;
-    background-image: url('/static/img/liste.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    padding-left: 40px; 
-}
-.photo {
-    list-style-type: none;
-    background-image: url('/static/img/photo.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    padding-left: 40px; 
-}
-.argent {
-    list-style-type: none;
-    background-image: url('/static/img/dollar.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    padding-left: 40px; 
-}
+.liste,
+.photo,
+.argent,
 .loupe {
     list-style-type: none;
-    background-image: url('/static/img/icons8-loupe-50.png');
     background-size: contain;
     background-repeat: no-repeat;
-    padding-left: 40px; 
+    padding-left: 40px;
 }
 
 .btn {
     background-color: rgb(47, 88, 144);
     color: #ffffff;
-    padding: 10px 20px;
+    padding: 2% 10%;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -190,15 +119,57 @@ p{
     letter-spacing: 0.175em;
     text-align: center;
     text-decoration: none;
-    padding: 2% 10%;
-    margin-top: 10%;
+    margin: 5% 0;
 }
-
 
 .btn:hover {
-    background-color: rgb(67, 123, 202); 
+    background-color: rgb(67, 123, 202);
 }
 
-#logo_api{
+#logo_api {
     width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .upper_txt {
+        width: 80%;
+    }
+    .list {
+        width: 100%;
+        gap: 20px;
+    }
+    .content {
+        width: 90%;
+    }
+    h1, h2, h3, .upper_txt {
+        text-align: center;
+    }
+    .mid_right, .explain_right, .api_right{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .upper_txt {
+        width: 80%;
+    }
+    .list {
+        width: 100%;
+        gap: 20px;
+    }
+    .display {
+        flex-direction: column;
+        align-items: center;
+    }
+    h1, h2, h3, .upper_txt {
+        text-align: center;
+    }
+    .mid_right, .explain_right, .api_right{
+        display: flex;
+        justify-content: center;
+    }
+    .leftpart {
+        margin-bottom: 5%;
+    }
 }
