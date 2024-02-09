@@ -1,39 +1,75 @@
 {{define "info"}}
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails de la carte</title>
     <link rel="stylesheet" href="/static/css/infos.css">
 </head>
-<body>
-    <h1>Détails de la carte</h1>
+<header>
+    <a id="logo" href="http://localhost:8080/liste">
+        <img src="/static/img/logo.png" class="logo" alt="">
+    </a>
+    <ul id="header">
+        <a class="nav" href="http://localhost:8080/main">Intro</a>
+        <a class="nav" href="http://localhost:8080/liste">Card Database</a>
+        <a class="nav" href="#">My deck</a>
+    </ul>
+    <form action="/recherche" method="GET" class="search">
+        <input type="text" id="recherche" name="query" placeholder="Rechercher une carte" required class="search_bar">
+        <button type="submit" class="search_btn">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 32 32"
+                class="search_icon">
+                <path
+                    d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z">
+                </path>
+            </svg>
+        </button>
+    </form>
+</header>
 
+<body>
     {{ with .Data }}
-        {{ range . }}
-            <div>    
-                <img src="{{ index .CardImages 0 }}" alt="" width="200">
-                <p><strong>Nom:</strong> {{ .Name }}</p>
-                <p><strong>Type:</strong> {{ .Type }}</p>
-                <p><strong>Description:</strong> {{ .Description }}</p>
-                {{ with index .CardSets 0 }}
-                    <p><strong>Rareté:</strong> {{ .SetRarity }}</p>
-                {{ end }}
-                {{ with index .CardPrices 0 }}
-                    <p><strong>Prix sur Cardmarket:</strong> {{ .CardmarketPrice }}</p>
-                {{ end }}
-                {{ with .CardImages }}
-					{{ range . }}
-					<a href="/info/{{ .ID }}">
-						<img src="{{ .ImageURL }}" alt="" width="200">
-					</a>
-					{{ end }}
-				{{ end }}
+    {{ range . }}
+    <div class="main_ctn">
+        <div class="img">
+            {{ with .CardImages }}
+            {{ range . }}
+            <a id="image_a" href="/info/{{ .ID }}">
+                <img id="image" src="{{ .ImageURL }}" alt="" width="200">
+            </a>
+            {{ end }}
+            {{ end }}
+        </div>
+        <div class="card_area">
+            <div class="all_info">
+
+                <div class="sub_infos">
+                    <h2><strong>Nom:</strong> {{ .Name }}</h2>
+                    <ul id="data">
+                        <li class="data"><strong>Type:</strong> {{ .Type }}</li>
+                        <li class="data"><strong>Attribute:</strong> {{ .Attribute }}</li>
+                        <li class="data"><strong>Level:</strong> {{ .Level }}</li>
+                        <li class="data"><strong>ATK:</strong> {{ .Atk }}</li>
+                        <li class="data"><strong>DEF:</strong> {{ .Def }}</li>
+                        <li class="data"><strong>Typing:</strong> {{ .Race }}</li>
+                    </ul>
+                    <div class="desc">
+                        <li><strong>Description:</strong> {{ .Description }}</li>
+                        {{ with index .CardSets 0 }}
+                        <li><strong>Rareté:</strong> {{ .SetRarity }}</li>
+                        {{ end }}
+                        {{ with index .CardPrices 0 }}
+                        <li><strong>Prix sur Cardmarket:</strong> {{ .CardmarketPrice }}</li>
+                        {{ end }}
+                    </div>
+                </div>
             </div>
-            <hr>
-        {{ end }}
-    {{ end }}
+            {{ end }}
+            {{ end }}
 </body>
+
 </html>
 {{end}}

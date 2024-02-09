@@ -1,6 +1,6 @@
 body {
     width: 100%;
-    height: 200vh;
+    height: 100%;
     margin: 0;
     background-image: url(/static/img/fond.jpeg);
     background-size: cover;
@@ -15,12 +15,12 @@ body {
 
 .display{
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 .leftpart {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     font: 36px bold;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@ body {
 
 .rightpart {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -50,7 +50,7 @@ body {
 
 .mid_left {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     font: 36px bold;
     display: flex;
     flex-direction: column;
@@ -61,7 +61,7 @@ body {
 
 .mid_right {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -70,7 +70,7 @@ body {
 
 .explain_left {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     font: 36px bold;
     display: flex;
     flex-direction: column;
@@ -81,7 +81,7 @@ body {
 
 .explain_right {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -90,7 +90,7 @@ body {
 
 .api_left {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     font: 36px bold;
     display: flex;
     flex-direction: column;
@@ -101,7 +101,7 @@ body {
 
 .api_right {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -109,7 +109,7 @@ body {
 }
 
 .content{
-    margin-top: 5%;
+    margin: 5% 5%;
     display: flex;
     align-items: center;
     flex-direction: column;
