@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
+	"math"
 	"net/http"
 	"os"
+	"strconv"
 )
 
 type CardSet struct {
@@ -69,9 +71,23 @@ func main() {
 	})
 
 	http.HandleFunc("/liste", func(w http.ResponseWriter, r *http.Request) {
+		nbCartes := r.URL.Query().Get("nb_cartes")
+		page := r.URL.Query().Get("page")
+		cardsToDisplay := 10
+		currentPage := 1
+
+		if nbCartes != "" {
+			cardsToDisplay, _ = strconv.Atoi(nbCartes)
+		}
+
+		if page != "" {
+			currentPage, _ = strconv.Atoi(page)
+		}
+
 		var cardsResponse CardResponse
 
 		apiURL := "https://db.ygoprodeck.com/api/v7/cardinfo.php"
+
 		response, err := http.Get(apiURL)
 		if err != nil {
 			fmt.Println("Error:", err)
@@ -91,44 +107,40 @@ func main() {
 			return
 		}
 
-		err = temp.ExecuteTemplate(w, "liste", cardsResponse)
-		if err != nil {
-			fmt.Println("Error rendering HTML:", err)
-			return
+		// Paginer les cartes
+		startIndex := (currentPage - 1) * cardsToDisplay
+		endIndex := startIndex + cardsToDisplay
+		if endIndex > len(cardsResponse.Data) {
+			endIndex = len(cardsResponse.Data)
 		}
-	})
+		cardsToRender := cardsResponse.Data[startIndex:endIndex]
 
-	http.HandleFunc("/recherche", func(w http.ResponseWriter, r *http.Request) {
-		query := r.URL.Query().Get("query")
+		// Calculer le nombre total de pages
+		totalPages := int(math.Ceil(float64(len(cardsResponse.Data)) / float64(cardsToDisplay)))
 
-		if query == "" {
-			fmt.Fprint(w, "Veuillez fournir un terme de recherche.")
-			return
-		}
-
-		apiURL := fmt.Sprintf("https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=%s", query)
-
-		response, err := http.Get(apiURL)
-		if err != nil {
-			fmt.Println("Error:", err)
-			return
-		}
-		defer response.Body.Close()
-
-		body, err := ioutil.ReadAll(response.Body)
-		if err != nil {
-			fmt.Println("Error reading response:", err)
-			return
+		// Passer les informations de pagination au modèle
+		pageInfo := struct {
+			TotalPages   int
+			CurrentPage  int
+			PreviousPage int
+			NextPage     int
+		}{
+			TotalPages:   totalPages,
+			CurrentPage:  currentPage,
+			PreviousPage: currentPage - 1,
+			NextPage:     currentPage + 1,
 		}
 
-		var cardsResponse CardResponse
-		err = json.Unmarshal(body, &cardsResponse)
-		if err != nil {
-			fmt.Println("Error unmarshalling JSON:", err)
-			return
-		}
-
-		err = temp.ExecuteTemplate(w, "recherche", cardsResponse)
+		// Afficher la liste des cartes paginée
+		err = temp.ExecuteTemplate(w, "liste", struct {
+			Cards        []Card
+			PageInfo     interface{}
+			CardsPerPage int
+		}{
+			Cards:        cardsToRender,
+			PageInfo:     pageInfo,
+			CardsPerPage: cardsToDisplay,
+		})
 		if err != nil {
 			fmt.Println("Error rendering HTML:", err)
 			return

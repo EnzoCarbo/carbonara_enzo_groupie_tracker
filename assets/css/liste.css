@@ -85,7 +85,7 @@ h1{
     flex-wrap: wrap;
     justify-content: center;
     gap: 7%;
-    margin-top: 10px;
+    margin: 10px 0;
     background-color: #353638;
     border-radius: 15px;
     border: 1px solid rgba(0,0,0,.125);
@@ -107,7 +107,7 @@ h1{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-select{
+#categorie, #level, #attribute {
     border: 1px solid rgb(34, 34, 34);
     background-color: rgb(34, 34, 34);
     color: white;
@@ -241,4 +241,28 @@ form {
     justify-content: space-between;
     gap: 10px;
     width: 100%;
+ }
+
+ .page {
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    color: #fff;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+ }
+
+ .pagination {
+    display: flex;
+    justify-content: center;
+
+ }
+
+ .page {
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
  }
