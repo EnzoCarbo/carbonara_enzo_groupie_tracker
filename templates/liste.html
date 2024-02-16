@@ -121,9 +121,9 @@
 			<form action="/liste" method="GET" id="listeForm">
 				<label for="select_nb_cartes">Nombre de cartes à afficher :</label>
 				<select name="nb_cartes" id="select_nb_cartes" onchange="submitForm()">
-					<option value="10">10</option>
-					<option value="20">20</option>
-					<option value="50">50</option>
+					<option value="10" selected>10</option>
+					<option value="20" selected>20</option>
+					<option value="50" selected>50</option>
 				</select>
 			</form>
 		</div>
@@ -149,6 +149,9 @@
 		<a class="page"href="/liste?page={{.PageInfo.NextPage}}&nb_cartes={{.CardsPerPage}}">Next</a>
 		{{end}}
 	</div>
+	<footer>
+		<a href="http://localhost:8080/apropos">About us</a>
+	</footer>
 </body>
 <script>
 	function submitForm() {

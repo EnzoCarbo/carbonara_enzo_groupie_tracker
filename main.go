@@ -73,7 +73,7 @@ func main() {
 	http.HandleFunc("/liste", func(w http.ResponseWriter, r *http.Request) {
 		nbCartes := r.URL.Query().Get("nb_cartes")
 		page := r.URL.Query().Get("page")
-		cardsToDisplay := 10
+		cardsToDisplay := 20
 		currentPage := 1
 
 		if nbCartes != "" {

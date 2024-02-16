@@ -45,10 +45,9 @@
         </div>
         <div class="card_area">
             <div class="all_info">
-
                 <div class="sub_infos">
                     <h2><strong>Nom:</strong> {{ .Name }}</h2>
-                    <ul id="data">
+                    <ul class="liste">
                         <li class="data"><strong>Type:</strong> {{ .Type }}</li>
                         <li class="data"><strong>Attribute:</strong> {{ .Attribute }}</li>
                         <li class="data"><strong>Level:</strong> {{ .Level }}</li>
@@ -62,14 +61,18 @@
                         <li><strong>Rareté:</strong> {{ .SetRarity }}</li>
                         {{ end }}
                         {{ with index .CardPrices 0 }}
-                        <li><strong>Prix sur Cardmarket:</strong> {{ .CardmarketPrice }}</li>
+                        <ul class="liste">
+                            <li class="data"><strong>Prix sur Cardmarket:</strong> {{ .CardmarketPrice }}€</li>
+                            <li class="data"><strong>Prix sur Ebay:</strong> {{ .EbayPrice }}€</li>
+                            <li class="data"><strong>Prix sur Amazon:</strong> {{ .AmazonPrice }}€</li>
+                        </ul>
                         {{ end }}
                     </div>
                 </div>
             </div>
             {{ end }}
             {{ end }}
-</body>
+    </body>
 
 </html>
 {{end}}
