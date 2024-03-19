@@ -11,8 +11,6 @@ import (
 	"text/template"
 )
 
-var cardsResponse backend.CardResponse
-
 func HandlerMain(w http.ResponseWriter, r *http.Request) {
 	temp, err := template.ParseGlob("./templates/*.html")
 	if err != nil {
@@ -23,6 +21,8 @@ func HandlerMain(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandlerListe(w http.ResponseWriter, r *http.Request) {
+	var cardsResponse backend.CardResponse
+
 	temp, err := template.ParseGlob("./templates/*.html")
 	if err != nil {
 		fmt.Printf("ERREUR => %s", err.Error())
@@ -103,6 +103,8 @@ func HandlerListe(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandlerInfo(w http.ResponseWriter, r *http.Request) {
+	var cardsResponse backend.CardResponse
+
 	temp, err := template.ParseGlob("./templates/*.html")
 	if err != nil {
 		fmt.Printf("ERREUR => %s", err.Error())
@@ -139,6 +141,8 @@ func HandlerInfo(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandlerCategorie(w http.ResponseWriter, r *http.Request) {
+	var cardsResponse backend.CardResponse
+
 	temp, err := template.ParseGlob("./templates/*.html")
 	if err != nil {
 		fmt.Printf("ERREUR => %s", err.Error())
@@ -238,30 +242,108 @@ func HandlerDeckRemove(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/deck", http.StatusSeeOther)
 }
 
+const maxCardCount = 3 // Maximum allowed count for each card in the deck
+
 func HandlerDeckAdd(w http.ResponseWriter, r *http.Request) {
 	cardID := r.URL.Path[len("/deck/add/"):]
 
-	// Recherche de la carte correspondante dans les données récupérées
-	var selectedCard backend.Card
-	for _, card := range cardsResponse.Data {
-		if strconv.Itoa(card.ID) == cardID {
-			selectedCard = card
-			break
-		}
+	// Convertir cardID en entier
+	id, err := strconv.Atoi(cardID)
+	if err != nil {
+		http.Error(w, "Invalid card ID", http.StatusBadRequest)
+		return
 	}
 
-	// Ajout de la carte au deck uniquement si elle n'est pas déjà présente
-	cardAlreadyInDeck := false
+	// Fetch card data from the API
+	apiURL := fmt.Sprintf("https://db.ygoprodeck.com/api/v7/cardinfo.php?id=%d", id)
+	response, err := http.Get(apiURL)
+	if err != nil {
+		http.Error(w, "Error fetching card data from the API", http.StatusInternalServerError)
+		return
+	}
+	defer response.Body.Close()
+
+	var cardResponse backend.CardResponse
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		http.Error(w, "Error reading card data from the API response", http.StatusInternalServerError)
+		return
+	}
+
+	err = json.Unmarshal(body, &cardResponse)
+	if err != nil {
+		http.Error(w, "Error unmarshalling card data from the API response", http.StatusInternalServerError)
+		return
+	}
+
+	// Ensure that the card data is not empty
+	if len(cardResponse.Data) == 0 {
+		http.Error(w, "Card data not found in API response", http.StatusNotFound)
+		return
+	}
+
+	// Select the first card from the response
+	selectedCard := cardResponse.Data[0]
+
+	// Check if the card is already in the deck
+	var cardCountInDeck int
 	for _, card := range userDeck.Cards {
 		if card.ID == selectedCard.ID {
-			cardAlreadyInDeck = true
-			break
+			cardCountInDeck++
 		}
 	}
-	if !cardAlreadyInDeck {
-		userDeck.Cards = append(userDeck.Cards, selectedCard)
+
+	// If the card is already in the deck 3 times, redirect without adding it
+	if cardCountInDeck >= maxCardCount {
+		http.Redirect(w, r, "/deck", http.StatusSeeOther)
+		return
 	}
 
-	// Redirection vers la page /deck après l'ajout au deck
+	// Add the selected card to the deck
+	userDeck.Cards = append(userDeck.Cards, selectedCard)
+
+	// Redirect to the deck page after adding the card
 	http.Redirect(w, r, "/deck", http.StatusSeeOther)
+}
+
+func HandlerRecherche(w http.ResponseWriter, r *http.Request) {
+	var cardsResponse backend.CardResponse
+	temp, err := template.ParseGlob("./templates/*.html")
+	if err != nil {
+		fmt.Printf("ERREUR => %s", err.Error())
+		return
+	}
+	query := r.URL.Query().Get("query")
+
+	if query == "" {
+		fmt.Fprint(w, "Veuillez fournir un terme de recherche.")
+		return
+	}
+
+	apiURL := fmt.Sprintf("https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=%s", query)
+
+	response, err := http.Get(apiURL)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		fmt.Println("Error reading response:", err)
+		return
+	}
+
+	err = json.Unmarshal(body, &cardsResponse)
+	if err != nil {
+		fmt.Println("Error unmarshalling JSON:", err)
+		return
+	}
+
+	err = temp.ExecuteTemplate(w, "recherche", cardsResponse)
+	if err != nil {
+		fmt.Println("Error rendering HTML:", err)
+		return
+	}
 }

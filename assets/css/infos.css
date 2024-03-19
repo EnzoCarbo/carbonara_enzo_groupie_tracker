@@ -2,7 +2,7 @@ body {
     margin: 0;
     width: 100%;
     height: 100vh;
-    background-color: #27292d;
+    background-color:black;
     color: white;
 }
 
@@ -28,7 +28,8 @@ body {
     grid-template-rows: min-content 1fr;
     grid-gap: 10px;
     grid-auto-flow: row;
-    grid-template-columns: repeat(3,1fr); 
+    grid-template-columns: repeat(3,1fr);
+    width: 100%;
 }
 
 .data {
@@ -63,65 +64,11 @@ li {
     border-radius: 10px;
 }
 
-header {
-    width: 100%;
-    height: 7rem;
-    background-color: rgb(34, 34, 34);
-    padding: 30px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 0 20px 0px #df3b3b;
-    justify-content: space-between;
-    font-size: 30px;
-}
-
-.logo {
-    height: 5rem  
-}
-
-.search {
-    display: flex;
-    border: 1px solid white;
-    border-radius: 2px;
-    background-color: white;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.search_bar{
-border: none;
-padding: 7px;
-font-size: 20px;
-
-}
 
 .prices {
     display: flex;
 }
 
-
-.search_btn{
-    border: 1px solid white;
-    border-radius: 50%;
-    background-color: white;
-}
-
-.search_btn:hover{
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-}
-
-#header {
-    list-style: none;
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    align-items: center;
-    list-style-type: none;
-    padding-left: 8%;
-}
 
 #header .nav {
     text-decoration: none;
@@ -142,5 +89,36 @@ img#image:hover {
 
 .adddeck {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+
 }
+
+.search {
+    width: 35%;
+}
+
+.search_bar {
+    height: 50px;
+    border-radius: 5px;
+    padding: 0 20px 0 52px;
+    border: 1px solid #5a5a61;
+    background: #313139 url(/static/img/ico_loupe.png) no-repeat center left 11px;
+    background-size: 25px 33px;
+    width: 100%;
+    color: white;
+}
+
+.search_bar::placeholder {
+    color: white;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+

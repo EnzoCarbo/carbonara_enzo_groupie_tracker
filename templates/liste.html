@@ -7,150 +7,196 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Card list</title>
 	<link rel="stylesheet" href="/static/css/liste.css">
+	<link rel="stylesheet" href="/static/css/header.css">
+
 </head>
 
 <body>
 	<header>
 		<a href="http://localhost:8080/liste">
-			<img src="/static/img/logo.png" class="logo" alt="">
+			<img src="/static/img/logo_tcg.png" class="logo" alt="">
 		</a>
 		<ul>
 			<a class="nav" href="http://localhost:8080/main">Intro</a>
 			<a class="nav" href="http://localhost:8080/liste">Card Database</a>
 			<a class="nav" href="http://localhost:8080/deck">My deck</a>
 		</ul>
-		<form action="/recherche" method="GET" class="search">
-			<input type="text" id="recherche" name="query" placeholder="Rechercher une carte" required
-				class="search_bar">
-			<button type="submit" class="search_btn">
-				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 32 32"
-					class="search_icon">
-					<path
-						d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z">
-					</path>
-				</svg>
-			</button>
-		</form>
 	</header>
-	<div class="main_ctn">
-		<div class="tri_ctn">
-			<div class="show_btn">
-				<button id="toggleSortForm" class="sbm_btn">Show/Hide Sorting</button>
-			</div>
-			<div class="tri hidden-form">
-				<h2>Sort settings</h2>
-				<form action="/categorie" method="GET" id="categoryForm" class="hidden-form">
-					<div class="iner_grp">
-						<select name="categorie" id="categorie" multiple onchange="updateSelection('categorie');">
-							<option value="#" selected disabled hidden>Sort</option>
-							<optgroup label="Main Deck Types">
-								<option value="Effect Monster">Effect Monster</option>
-								<option value="Flip Effect Monster">Flip Effect Monster</option>
-								<option value="Gemini Monster">Gemini Monster</option>
-								<option value="Normal Monster">Normal Monster</option>
-								<option value="Normal Tuner Monster">Normal Tuner Monster"</option>
-								<option value="Pendulum Effect Monster">Pendulum Effect Monster</option>
-								<option value="Pendulum Flip Effect Monster">Pendulum Flip Effect Monster</option>
-								<option value="Pendulum Normal Monster">Pendulum Normal Monster</option>
-								<option value="Pendulum Tuner Effect Monster">Pendulum Tuner Effect Monster</option>
-								<option value="Ritual Effect Monster">Ritual Effect Monster</option>
-								<option value="Ritual Monster">Ritual Monster</option>
-								<option value="Spell Card">Spell Card</option>
-								<option value="Spirit Monster">Spirit Monster</option>
-								<option value="Toon Monster">Toon Monster</option>
-								<option value="Trap Card">Trap Card</option>
-								<option value="Tuner Monster">Tuner Monster</option>
-								<option value="Union Effect Monster">Union Effect Monster</option>
-							</optgroup>
-							<optgroup label="Extra Deck Types">
-								<option value="Fusion Monster">Fusion Monster</option>
-								<option value="Link Monster">Link Monster</option>
-								<option value="Pendulum Effect Fusion Monster">Pendulum Effect Fusion Monster</option>
-								<option value="Synchro Monster">Synchro Monster</option>
-								<option value="Synchro Pendulum Effect Monster">Synchro Pendulum Effect Monster</option>
-								<option value="Synchro Tuner Monster">Synchro Tuner Monster</option>
-								<option value="XYZ Monster">XYZ Monster</option>
-								<option value="XYZ Pendulum Effect Monster">XYZ Pendulum Effect Monster</option>
-							</optgroup>
-							<optgroup label="Other Types">
-								<option value="Skill Card">Skill Card</option>
-								<option value="Token">Token</option>
-							</optgroup>
-						</select>
-						<select name="level" id="level" multiple onchange="updateSelection('level');">
-							<option value="" selected disabled hidden>Level</option>
-							<optgroup label="Cards Level">
-								<option value="1">Level 1</option>
-								<option value="2">Level 2</option>
-								<option value="3">Level 3</option>
-								<option value="4">Level 4</option>
-								<option value="5">Level 5</option>
-								<option value="6">Level 6</option>
-								<option value="7">Level 7</option>
-								<option value="8">Level 8</option>
-								<option value="9">Level 9</option>
-								<option value="10">Level 10</option>
-								<option value="11">Level 11</option>
-								<option value="12">Level 12</option>
-							</optgroup>
-						</select>
-						<select name="attribute" id="attribute" multiple onchange="updateSelection('attribute');">
-							<option value="#" selected disabled hidden>Attribute</option>
-							<optgroup label="Attribute">
-								<option value="dark">Dark</option>
-								<option value="earth">Earth</option>
-								<option value="fire">Fire</option>
-								<option value="light">Light</option>
-								<option value="water">Water</option>
-								<option value="wind">Wind</option>
-								<option value="divine">Divine</option>
-								<option value="Fire">Fire</option>
-							</optgroup>
-						</select>
-					</div>
-					<div class="btn">
-						<button type="submit" class="sbm_btn">Trier</button>
-					</div>
+	<img src="/static/img/Yu-Gi-Oh.jpg" alt="">
+	<div class="global_ctn">
+		<div class="main_ctn">
+			<div class="tri_ctn">
+				<form action="/recherche" method="GET" class="search">
+					<input type="text" id="recherche" name="query" placeholder="Search terms ..." required
+						class="search_bar">
 				</form>
+				<div class="tri hidden-form">
+					<h2>Sort settings</h2>
+					<form action="/categorie" method="GET" id="categoryForm" class="hidden-form">
+						<div class="iner_grp">
+							<select name="categorie" id="categorie" multiple onchange="updateSelection('categorie');">
+								<option value="#" selected disabled hidden>Sort</option>
+								<optgroup label="Main Deck Types">
+									<option value="Effect Monster">Effect Monster</option>
+									<option value="Flip Effect Monster">Flip Effect Monster</option>
+									<option value="Gemini Monster">Gemini Monster</option>
+									<option value="Normal Monster">Normal Monster</option>
+									<option value="Normal Tuner Monster">Normal Tuner Monster"</option>
+									<option value="Pendulum Effect Monster">Pendulum Effect Monster</option>
+									<option value="Pendulum Flip Effect Monster">Pendulum Flip Effect Monster</option>
+									<option value="Pendulum Normal Monster">Pendulum Normal Monster</option>
+									<option value="Pendulum Tuner Effect Monster">Pendulum Tuner Effect Monster</option>
+									<option value="Ritual Effect Monster">Ritual Effect Monster</option>
+									<option value="Ritual Monster">Ritual Monster</option>
+									<option value="Spell Card">Spell Card</option>
+									<option value="Spirit Monster">Spirit Monster</option>
+									<option value="Toon Monster">Toon Monster</option>
+									<option value="Trap Card">Trap Card</option>
+									<option value="Tuner Monster">Tuner Monster</option>
+									<option value="Union Effect Monster">Union Effect Monster</option>
+								</optgroup>
+								<optgroup label="Extra Deck Types">
+									<option value="Fusion Monster">Fusion Monster</option>
+									<option value="Link Monster">Link Monster</option>
+									<option value="Pendulum Effect Fusion Monster">Pendulum Effect Fusion Monster
+									</option>
+									<option value="Synchro Monster">Synchro Monster</option>
+									<option value="Synchro Pendulum Effect Monster">Synchro Pendulum Effect Monster
+									</option>
+									<option value="Synchro Tuner Monster">Synchro Tuner Monster</option>
+									<option value="XYZ Monster">XYZ Monster</option>
+									<option value="XYZ Pendulum Effect Monster">XYZ Pendulum Effect Monster</option>
+								</optgroup>
+								<optgroup label="Other Types">
+									<option value="Skill Card">Skill Card</option>
+									<option value="Token">Token</option>
+								</optgroup>
+							</select>
+							<select name="level" id="level" multiple onchange="updateSelection('level');">
+								<option value="" selected disabled hidden>Level</option>
+								<optgroup label="Cards Level">
+									<option value="1">Level 1</option>
+									<option value="2">Level 2</option>
+									<option value="3">Level 3</option>
+									<option value="4">Level 4</option>
+									<option value="5">Level 5</option>
+									<option value="6">Level 6</option>
+									<option value="7">Level 7</option>
+									<option value="8">Level 8</option>
+									<option value="9">Level 9</option>
+									<option value="10">Level 10</option>
+									<option value="11">Level 11</option>
+									<option value="12">Level 12</option>
+								</optgroup>
+							</select>
+							<select name="attribute" id="attribute" multiple onchange="updateSelection('attribute');">
+								<option value="#" selected disabled hidden>Attribute</option>
+								<optgroup label="Attribute">
+									<option value="dark">Dark</option>
+									<option value="earth">Earth</option>
+									<option value="fire">Fire</option>
+									<option value="light">Light</option>
+									<option value="water">Water</option>
+									<option value="wind">Wind</option>
+									<option value="divine">Divine</option>
+									<option value="Fire">Fire</option>
+								</optgroup>
+							</select>
+						</div>
+						<div class="btn">
+							<button type="submit" class="sbm_btn">Trier</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="entete">
+				<div class="titre">
+					<h1>Card list</h1>
+				</div>
+				<div class="nb_cartes">
+					<form action="/liste" method="GET" id="listeForm">
+						<label for="select_nb_cartes">Nombre de cartes à afficher :</label>
+						<select name="nb_cartes" id="select_nb_cartes" onchange="submitForm()">
+							<option value="10">10</option>
+							<option value="20" selected>20</option>
+							<option value="50">50</option>
+						</select>
+					</form>
+				</div>
+			</div>
+			<div class="cartes">
+				{{ range .Cards }}
+				{{ with .CardImages }}
+				{{ range . }}
+				<div class="carte_img">
+					<a href="/info/{{ .ID }}">
+						<img class="logo" src="{{ .ImageURL }}" alt="" width="200">
+					</a>
+				</div>
+				{{ end }}
+				{{ end }}
+				{{ end }}
 			</div>
 		</div>
-		<div class="titre">
-			<h1>Card list</h1>
-		</div>
-		<div class="nb_cartes">
-			<form action="/liste" method="GET" id="listeForm">
-				<label for="select_nb_cartes">Nombre de cartes à afficher :</label>
-				<select name="nb_cartes" id="select_nb_cartes" onchange="submitForm()">
-					<option value="10">10</option>
-					<option value="20" selected>20</option>
-					<option value="50">50</option>
-				</select>
-			</form>
-		</div>
-		<div class="cartes">
-			{{ range .Cards }}
-			{{ with .CardImages }}
-			{{ range . }}
-			<div class="carte_img">
-				<a href="/info/{{ .ID }}">
-					<img src="{{ .ImageURL }}" alt="" width="200">
-				</a>
-			</div>
-			{{ end }}
-			{{ end }}
-			{{ end }}
+		<div class="pagination">
+			{{if .PageInfo.PreviousPage}}
+			<a class="nav" href="/liste?page={{.PageInfo.PreviousPage}}&nb_cartes={{.CardsPerPage}}">Previous</a>
+			{{end}}
+			{{if .PageInfo.NextPage}}
+			<a class="nav" href="/liste?page={{.PageInfo.NextPage}}&nb_cartes={{.CardsPerPage}}">Next</a>
+			{{end}}
 		</div>
 	</div>
-	<div class="pagination">
-		{{if .PageInfo.PreviousPage}}
-		<a class="page" href="/liste?page={{.PageInfo.PreviousPage}}&nb_cartes={{.CardsPerPage}}">Previous</a>
-		{{end}}
-		{{if .PageInfo.NextPage}}
-		<a class="page"href="/liste?page={{.PageInfo.NextPage}}&nb_cartes={{.CardsPerPage}}">Next</a>
-		{{end}}
-	</div>
+	
 	<footer>
-		<a href="http://localhost:8080/apropos">About us</a>
+		<a class="nav" href="http://localhost:8080/apropos">About us</a>
+		<div class="socials">
+			Share : 
+			<div class="social_ctn">
+			<a class="reseaux" href=""><svg xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="50px" height="50px">
+					<g fill="#e4cd93" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+						stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+						font-family="none" font-weight="none" font-size="none" text-anchor="none"
+						style="mix-blend-mode: normal">
+						<g transform="scale(5.12,5.12)">
+							<path
+								d="M16,3c-7.16752,0 -13,5.83248 -13,13v18c0,7.16752 5.83248,13 13,13h18c7.16752,0 13,-5.83248 13,-13v-18c0,-7.16752 -5.83248,-13 -13,-13zM16,5h18c6.08648,0 11,4.91352 11,11v18c0,6.08648 -4.91352,11 -11,11h-18c-6.08648,0 -11,-4.91352 -11,-11v-18c0,-6.08648 4.91352,-11 11,-11zM37,11c-1.10457,0 -2,0.89543 -2,2c0,1.10457 0.89543,2 2,2c1.10457,0 2,-0.89543 2,-2c0,-1.10457 -0.89543,-2 -2,-2zM25,14c-6.06329,0 -11,4.93671 -11,11c0,6.06329 4.93671,11 11,11c6.06329,0 11,-4.93671 11,-11c0,-6.06329 -4.93671,-11 -11,-11zM25,16c4.98241,0 9,4.01759 9,9c0,4.98241 -4.01759,9 -9,9c-4.98241,0 -9,-4.01759 -9,-9c0,-4.98241 4.01759,-9 9,-9z">
+							</path>
+						</g>
+					</g>
+				</svg></a>
+			<a class="reseaux" href=""><svg xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="50px" height="50px">
+					<g fill="#e4cd93" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+						stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+						font-family="none" font-weight="none" font-size="none" text-anchor="none"
+						style="mix-blend-mode: normal">
+						<g transform="scale(5.12,5.12)">
+							<path
+								d="M9,4c-2.74952,0 -5,2.25048 -5,5v32c0,2.74952 2.25048,5 5,5h16.83203c0.10799,0.01785 0.21818,0.01785 0.32617,0h5.67383c0.10799,0.01785 0.21818,0.01785 0.32617,0h8.8418c2.74952,0 5,-2.25048 5,-5v-32c0,-2.74952 -2.25048,-5 -5,-5zM9,6h32c1.66848,0 3,1.33152 3,3v32c0,1.66848 -1.33152,3 -3,3h-8v-14h3.82031l1.40039,-7h-5.2207v-2c0,-0.55749 0.05305,-0.60107 0.24023,-0.72266c0.18718,-0.12159 0.76559,-0.27734 1.75977,-0.27734h3v-5.63086l-0.57031,-0.27149c0,0 -2.29704,-1.09766 -5.42969,-1.09766c-2.25,0 -4.09841,0.89645 -5.28125,2.375c-1.18284,1.47855 -1.71875,3.45833 -1.71875,5.625v2h-3v7h3v14h-16c-1.66848,0 -3,-1.33152 -3,-3v-32c0,-1.66848 1.33152,-3 3,-3zM32,15c2.07906,0 3.38736,0.45846 4,0.70117v2.29883h-1c-1.15082,0 -2.07304,0.0952 -2.84961,0.59961c-0.77656,0.50441 -1.15039,1.46188 -1.15039,2.40039v4h4.7793l-0.59961,3h-4.17969v16h-4v-16h-3v-3h3v-4c0,-1.83333 0.46409,-3.35355 1.28125,-4.375c0.81716,-1.02145 1.96875,-1.625 3.71875,-1.625z">
+							</path>
+						</g>
+					</g>
+				</svg></a>
+			<a class="reseaux" href="">
+				<svg xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="50px" height="50px">
+					<g fill="#e4cd93" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+						stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+						font-family="none" font-weight="none" font-size="none" text-anchor="none"
+						style="mix-blend-mode: normal">
+						<g transform="scale(5.12,5.12)">
+							<path
+								d="M9,4c-2.75042,0 -5,2.24958 -5,5v32c0,2.75042 2.24958,5 5,5h32c2.75042,0 5,-2.24958 5,-5v-32c0,-2.75042 -2.24958,-5 -5,-5zM9,6h32c1.67158,0 3,1.32842 3,3v32c0,1.67158 -1.32842,3 -3,3h-32c-1.67158,0 -3,-1.32842 -3,-3v-32c0,-1.67158 1.32842,-3 3,-3zM26.04297,10c-0.5515,0.00005 -0.99887,0.44655 -1,0.99805c0,0 -0.01098,4.87522 -0.02148,9.76172c-0.0053,2.44325 -0.01168,4.88902 -0.01562,6.73047c-0.00394,1.84145 -0.00586,3.0066 -0.00586,3.10352c0,1.81526 -1.64858,3.29883 -3.52734,3.29883c-1.86379,0 -3.35156,-1.48972 -3.35156,-3.35352c0,-1.86379 1.48777,-3.35156 3.35156,-3.35156c0.06314,0 0.1904,0.02075 0.4082,0.04688c0.28415,0.03406 0.56927,-0.05523 0.78323,-0.24529c0.21396,-0.19006 0.33624,-0.46267 0.33591,-0.74885v-4.20117c-0.00005,-0.528 -0.41054,-0.965 -0.9375,-0.99805c-0.15583,-0.0098 -0.35192,-0.0293 -0.58984,-0.0293c-5.24953,0 -9.52734,4.27782 -9.52734,9.52734c0,5.24953 4.27782,9.52734 9.52734,9.52734c5.24938,0 9.52734,-4.27782 9.52734,-9.52734v-9.04883c1.45461,1.16341 3.26752,1.90039 5.26953,1.90039c0.27306,0 0.53277,-0.01618 0.78125,-0.03906c0.51463,-0.04749 0.90832,-0.47927 0.9082,-0.99609v-4.66992c0.0003,-0.52448 -0.40463,-0.9601 -0.92773,-0.99805c-3.14464,-0.22561 -5.65141,-2.67528 -5.97852,-5.79102c-0.05305,-0.50925 -0.48214,-0.89619 -0.99414,-0.89648zM27.04102,12h2.28125c0.72678,3.2987 3.30447,5.8144 6.63672,6.44531v2.86523c-2.13887,-0.10861 -4.01749,-1.1756 -5.12305,-2.85742c-0.24284,-0.36962 -0.69961,-0.53585 -1.12322,-0.40877c-0.4236,0.12708 -0.71344,0.51729 -0.71272,0.95955v11.53516c0,4.16848 -3.35873,7.52734 -7.52734,7.52734c-4.16848,0 -7.52734,-3.35887 -7.52734,-7.52734c0,-4.00052 3.12077,-7.17588 7.05469,-7.43164v2.17578c-2.71358,0.25252 -4.87891,2.47904 -4.87891,5.25586c0,2.94421 2.40735,5.35352 5.35156,5.35352c2.92924,0 5.52734,-2.30609 5.52734,-5.29883c0,0.04892 0.00186,-1.25818 0.00586,-3.09961c0.0039,-1.84143 0.01037,-4.28722 0.01563,-6.73047c0.0094,-4.3869 0.0177,-7.91447 0.01953,-8.76367z">
+							</path>
+						</g>
+					</g>
+				</svg>
+			</a>
+		</div>
+	</div>
+		
 	</footer>
 </body>
 <script>
@@ -161,37 +207,27 @@
 		var toggleButton = document.getElementById('toggleSortForm');
 		var sortForm = document.getElementById('categoryForm');
 		var sortSection = document.querySelector('.tri');
-
-		toggleButton.addEventListener('click', function () {
-			// Basculer la classe 'hidden-form' du formulaire pour afficher ou masquer
-			sortForm.classList.toggle('hidden-form');
-			sortForm.classList.toggle('visible-form');
-
-			// Basculer la classe 'hidden-form' de la section de tri pour afficher ou masquer
-			sortSection.classList.toggle('hidden-form');
-			sortSection.classList.toggle('visible-form');
-		});
 	});
 
 	//Permet de garder en mémoire le select de nombre de cartes à afficher
 	document.addEventListener('DOMContentLoaded', function () {
-   
-    var selectNbCartes = document.getElementById('select_nb_cartes');
-  
-    var selectedValue = localStorage.getItem('selectedNbCartes');
 
-    if (selectedValue) {
-      selectNbCartes.value = selectedValue;
-    }
- 
-    selectNbCartes.addEventListener('change', function () {   
-      localStorage.setItem('selectedNbCartes', selectNbCartes.value);  
-      submitForm();
-    });
+		var selectNbCartes = document.getElementById('select_nb_cartes');
 
-    function submitForm() {
-      document.getElementById("listeForm").submit();
-    }
-  });
+		var selectedValue = localStorage.getItem('selectedNbCartes');
+
+		if (selectedValue) {
+			selectNbCartes.value = selectedValue;
+		}
+
+		selectNbCartes.addEventListener('change', function () {
+			localStorage.setItem('selectedNbCartes', selectNbCartes.value);
+			submitForm();
+		});
+
+		function submitForm() {
+			document.getElementById("listeForm").submit();
+		}
+	});
 </script>
 {{end}}
