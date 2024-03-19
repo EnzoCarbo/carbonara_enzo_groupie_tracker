@@ -139,3 +139,8 @@ img#image:hover {
     transition: transform 0.3s ease;
 
 }
+
+.adddeck {
+    display: flex;
+    justify-content: center;
+}

@@ -15,7 +15,7 @@
     <ul id="header">
         <a class="nav" href="http://localhost:8080/main">Intro</a>
         <a class="nav" href="http://localhost:8080/liste">Card Database</a>
-        <a class="nav" href="#">My deck</a>
+        <a class="nav" href="http://localhost:8080/deck">My deck</a>
     </ul>
     <form action="/recherche" method="GET" class="search">
         <input type="text" id="recherche" name="query" placeholder="Rechercher une carte" required class="search_bar">
@@ -69,9 +69,20 @@
                         {{ end }}
                     </div>
                 </div>
+                <div class="adddeck">
+                    <form action="/deck/add/{{ .ID }}" method="POST">
+                        <button type="submit">Ajouter au deck</button>
+                    </form>
+                    <form action="/deck/remove/{{ .ID }}" method="POST">
+                        <button type="submit">Retirer du deck</button>
+                    </form>
+                </div>
             </div>
             {{ end }}
             {{ end }}
+        </div>
+    </div>
+  
     </body>
 
 </html>
