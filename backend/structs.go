@@ -51,3 +51,10 @@ type SearchRequest struct {
 type Deck struct {
 	Cards []Card
 }
+
+type PageInfo struct {
+	TotalPages   int
+	CurrentPage  int
+	PreviousPage int
+	NextPage     int
+}

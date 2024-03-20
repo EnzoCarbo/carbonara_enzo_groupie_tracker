@@ -112,26 +112,3 @@ select {
 
 
 
-footer {  
-     
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 200px;
-    padding-top: 10px;
-    background-color: rgb(14, 14, 9);
-}
-
-a {
-    text-decoration: none;
-    color: white;
-}
-
-.nav:hover {
-    color: rgb(193, 223, 43);
-}
-
-.socials {
-    margin-top: 30px;
-}

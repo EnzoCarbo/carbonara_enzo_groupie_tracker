@@ -16,6 +16,8 @@ func main() {
 	http.HandleFunc("/deck/add/", handler.HandlerDeckAdd)
 	http.HandleFunc("/deck/remove/", handler.HandlerDeckRemove)
 	http.HandleFunc("/recherche", handler.HandlerRecherche)
+	http.HandleFunc("/", handler.NotFoundHandler)
+	http.HandleFunc("/404", handler.Handler404)
 
 	rootDoc, _ := os.Getwd()
 	fileserver := http.FileServer(http.Dir(rootDoc + "/assets"))

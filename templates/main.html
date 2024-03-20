@@ -9,14 +9,12 @@
     <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet'>
     <link rel="stylesheet" href="/static/css/main.css">
 </head>
-
 <body>
     <div class="display">
         <div class="leftpart">
             <div class="upper_txt">
                 <h1>Yu-Gi-Oh TCG Developers</h1>
                 <p>Customize your own deck</p>
-                <!-- Ajoutez un identifiant à la section cible -->
                 <img id="fleche" src="/static/img/fleche-removebg-preview (3).png" alt="Rediriger vers la section cible" onclick="scrollToSection('target')" style="cursor: pointer;">
             </div>
         </div>
@@ -80,12 +78,7 @@
         </div>
         </div>
     </div>
-    <script>
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+    <script src="/static/js/scroll.js"></script>
 </body>
 </html>
 {{end}}
