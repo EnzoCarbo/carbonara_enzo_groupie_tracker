@@ -108,6 +108,7 @@
 		<div class="titre">
 			<h1>Card list</h1>
 		</div>
+		{{ if .Data }}
 		<div class="cartes">
 			{{ range .Data }}
 			{{ with .CardImages }}
@@ -121,8 +122,10 @@
 			{{ end }}
 			{{ end }}
 		</div>
+		{{ else }}
+		<p>Aucun résultat trouvé.</p>
+		{{ end }}
 	</div>
-	
 	<footer>
 		<a class="nav" href="http://localhost:8080/apropos">About us</a>
 		<div class="socials">

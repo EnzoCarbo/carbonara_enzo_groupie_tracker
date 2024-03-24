@@ -194,8 +194,7 @@ func DisplayCategorie(w http.ResponseWriter, r *http.Request) {
 	attributes := r.URL.Query()["attribute"]
 
 	if len(categories) == 0 && len(levels) == 0 && len(attributes) == 0 {
-		http.Error(w, "Veuillez fournir au moins une option de tri.", http.StatusBadRequest)
-		return
+		http.Redirect(w, r, "liste", http.StatusSeeOther)
 	}
 
 	temp, err := template.ParseGlob("./templates/*.html")
@@ -248,8 +247,8 @@ func GetCardsByQuery(query string) (CardResponse, error) {
 	}
 
 	err = json.Unmarshal(body, &cardsResponse)
-	if err != nil || len(cardsResponse.Data) == 0 {
-		return cardsResponse, errors.New("card data not found in API response")
+	if err != nil {
+		return cardsResponse, nil
 	}
 
 	return cardsResponse, nil
@@ -268,11 +267,7 @@ func DisplayRecherche(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cardsResponse, err := GetCardsByQuery(query)
-	if err != nil {
-		http.Error(w, fmt.Sprintf("error fetching card data: %v", err), http.StatusInternalServerError)
-		return
-	}
+	cardsResponse, _ := GetCardsByQuery(query)
 
 	err = temp.ExecuteTemplate(w, "recherche", cardsResponse)
 	if err != nil {

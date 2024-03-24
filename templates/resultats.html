@@ -10,25 +10,42 @@
 
     <title>Résultats de la recherche</title>
 </head>
-
+<header>
+    <a id="logo" href="http://localhost:8080/liste">
+        <img src="/static/img/logo_tcg.png" class="logo" alt="">
+    </a>
+    <form action="/recherche" method="GET" class="search">
+        <input type="text" id="recherche" name="query" placeholder="Search cards" required class="search_bar">
+    </form>
+    <ul id="header">
+        <a class="nav" href="http://localhost:8080/main">Intro</a>
+        <a class="nav" href="http://localhost:8080/liste">Card Database</a>
+        <a class="nav" href="http://localhost:8080/deck">My deck</a>
+    </ul>
+</header>
 <body>
     <h1>Résultats de la recherche</h1>
     {{ if .Data }}
-    <ul>
+    <ul id="liste">
         {{ range .Data }}
         <li>
-            <strong>Nom:</strong> {{ .Name }}<br>
-            <strong>Type:</strong> {{ .Type }}<br>
-            <strong>Description:</strong> {{ .Description }}<br>
+            <a class="liste_info" href="/info/{{ .ID }}">
             {{ with .CardImages }}
             {{ range . }}
-            <a href="/info/{{ .ID }}">
+           
                 <img src="{{ .ImageURL }}" alt="" width="200">
-            </a>
+          
             {{ end }}
             {{ end }}
+            <div class="infos">
+                <div class="nametype">
+           <h2>{{ .Name }}</h2>
+            <h3>{{ .Type }}</h3>
+        </div>
+         {{ .Description }}
+        </div>
+    </a>
         </li>
-        <br>
         {{ end }}
     </ul>
     {{ else }}
