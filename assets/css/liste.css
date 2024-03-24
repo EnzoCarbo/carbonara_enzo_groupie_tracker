@@ -58,7 +58,6 @@ select {
     color: #333;
 }
 
-/* Style pour le bouton */
 .sbm_btn {
     padding: 10px 20px;
     border: none;
@@ -80,9 +79,9 @@ select {
     padding: 100px;
 }
 
-/* Style pour chaque carte */
+
 .carte_img {
-    width: calc(20% - 20px); /* Largeur de chaque carte avec une marge de 20px entre elles */
+    width: calc(20% - 20px); 
     margin-bottom: 20px;
     box-sizing: border-box;
 }
@@ -108,6 +107,7 @@ select {
     display: flex;
     justify-content: center;
 }
+
 
 
 

@@ -39,7 +39,11 @@
 			{{ end }}
 			{{ end }}
 			{{ end }}
+			{{ if not .Cards }}
+            <h2>Votre deck est vide.</h2>
+            {{ end }}
 		</div>
+		
     </div>
 	<footer>
 		<a class="nav" href="http://localhost:8080/aboutus">About us</a>

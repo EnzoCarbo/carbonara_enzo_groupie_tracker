@@ -105,9 +105,6 @@
 				</form>
 			</div>
 		</div>
-		<div class="titre">
-			<h1>Card list</h1>
-		</div>
 		{{ if .Data }}
 		<div class="cartes">
 			{{ range .Data }}
@@ -115,7 +112,7 @@
 			{{ range . }}
 			<div class="carte_img">
 				<a href="/info/{{ .ID }}">
-					<img src="{{ .ImageURL }}" alt="" width="200">
+					<img class="logo" src="{{ .ImageURL }}" alt="" width="200">
 				</a>
 			</div>
 			{{ end }}
