@@ -31,6 +31,7 @@ func HandlerCategorie(w http.ResponseWriter, r *http.Request) {
 	backend.DisplayCategorie(w, r)
 }
 
+// Variable globale pour stocker le deck de l'utilisateur
 var userDeck backend.Deck
 
 func HandlerDeck(w http.ResponseWriter, r *http.Request) {
@@ -68,16 +69,17 @@ func Handler404(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandlerDeckRemove(w http.ResponseWriter, r *http.Request) {
+	// Extraire l'ID de la carte à supprimer à partir de l'URL
 	cardID := r.URL.Path[len("/deck/remove/"):]
 
-	// Convertir cardID en entier
+	// Convertir l'ID de la carte en entier
 	id, err := strconv.Atoi(cardID)
 	if err != nil {
 		http.Error(w, "Invalid card ID", http.StatusBadRequest)
 		return
 	}
 
-	// Recherche de la carte correspondante dans le deck
+	// Recherche de la carte correspondante dans le deck de l'utilisateur
 	var cardIndex int = -1
 	for i, card := range userDeck.Cards {
 		if card.ID == id {
@@ -95,19 +97,21 @@ func HandlerDeckRemove(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/deck", http.StatusSeeOther)
 }
 
-const maxCardCount = 3 // Maximum allowed count for each card in the deck
+// Nombre maximum de fois où une carte peut être ajoutée au deck
+const maxCardCount = 3
 
 func HandlerDeckAdd(w http.ResponseWriter, r *http.Request) {
+	// Extraire l'ID de la carte à ajouter à partir de l'URL
 	cardID := r.URL.Path[len("/deck/add/"):]
 
-	// Convertir cardID en entier
+	// Convertir l'ID de la carte en entier
 	id, err := strconv.Atoi(cardID)
 	if err != nil {
 		http.Error(w, "Invalid card ID", http.StatusBadRequest)
 		return
 	}
 
-	// Fetch card data from the API
+	// Récupérer les données de la carte depuis l'API
 	apiURL := fmt.Sprintf("https://db.ygoprodeck.com/api/v7/cardinfo.php?id=%d", id)
 	response, err := http.Get(apiURL)
 	if err != nil {
@@ -129,16 +133,15 @@ func HandlerDeckAdd(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Ensure that the card data is not empty
 	if len(cardResponse.Data) == 0 {
 		http.Error(w, "Card data not found in API response", http.StatusNotFound)
 		return
 	}
 
-	// Select the first card from the response
+	// Sélectionner la première carte de la réponse
 	selectedCard := cardResponse.Data[0]
 
-	// Check if the card is already in the deck
+	// Vérifier si la carte est déjà dans le deck
 	var cardCountInDeck int
 	for _, card := range userDeck.Cards {
 		if card.ID == selectedCard.ID {
@@ -146,15 +149,28 @@ func HandlerDeckAdd(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	// If the card is already in the deck 3 times, redirect without adding it
+	// Si la carte est déjà dans le deck 3 fois, rediriger sans l'ajouter
 	if cardCountInDeck >= maxCardCount {
 		http.Redirect(w, r, "/deck", http.StatusSeeOther)
 		return
 	}
 
-	// Add the selected card to the deck
+	// Ajouter la carte sélectionnée au deck
 	userDeck.Cards = append(userDeck.Cards, selectedCard)
 
-	// Redirect to the deck page after adding the card
+	// Redirection vers la page /deck après l'ajout de la carte
 	http.Redirect(w, r, "/deck", http.StatusSeeOther)
+}
+
+func HandlerAboutUs(w http.ResponseWriter, r *http.Request) {
+	temp, err := template.ParseGlob("./templates/*.html")
+	if err != nil {
+		fmt.Printf("ERREUR => %s", err.Error())
+		return
+	}
+	err = temp.ExecuteTemplate(w, "aboutus", userDeck)
+	if err != nil {
+		fmt.Println("Error rendering HTML:", err)
+		return
+	}
 }

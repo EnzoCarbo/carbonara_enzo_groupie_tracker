@@ -18,6 +18,7 @@ func main() {
 	http.HandleFunc("/recherche", handler.HandlerRecherche)
 	http.HandleFunc("/", handler.NotFoundHandler)
 	http.HandleFunc("/404", handler.Handler404)
+	http.HandleFunc("/aboutus", handler.HandlerAboutUs)
 
 	rootDoc, _ := os.Getwd()
 	fileserver := http.FileServer(http.Dir(rootDoc + "/assets"))
